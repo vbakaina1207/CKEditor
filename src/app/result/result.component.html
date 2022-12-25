@@ -1,0 +1,4 @@
+<div class="block block-result" [ngStyle]="{'color': textStyle.textColor, 'background-color': textStyle.bgColor, 'font-size': textStyle.size, 'font-weight': textStyle.bold ? 'bold' : '400', 'font-style': textStyle.italic ? 'italic' : 'normal', 'font-family': textStyle.family}"
+[innerHtml]="codeEditor | safeHtml">
+
+</div>    

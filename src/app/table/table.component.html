@@ -1,0 +1,86 @@
+
+<div class="second" *ngIf="isTable">
+    
+    <div class="block-2">
+        <h2>Choose what you add:</h2>
+        <form #form="ngForm" class="radio-choose">
+            <label for="isList">
+            <label class="radio">
+                <input type="radio" name="isList" value="" class="choose" [checked]="true" [(ngModel)]="isList"><span></span>
+                table 
+            </label>
+            <label class="radio ms-3">
+                list 
+                <input type="radio" name="isList" value="list" [checked]="isList" class="choose" [(ngModel)]="isList" ><span></span>
+            </label>
+            </label>
+        </form>
+        <div class="create-table" *ngIf="!isList">
+            <form #form="ngForm" name="form_table" class="form-table">
+                <label for="tr" class="tinput">Count TR:
+                    <input type="text" name="tr" id="tr" placeholder="Count TR:" [(ngModel)]="tableStyle.countTR">                            
+                </label>
+                <label for="td" class="tinput">Count TD:
+                    <input type="text" name="td" id="td" placeholder="Count TD:" [(ngModel)]="tableStyle.countTD">                            
+                </label>
+            </form>
+            <h3>Add style to your table:</h3>
+            <form name="form_table_style" class="form-table-style">
+                <label for="width__td" class="tinput">Width of TD:
+                    <input type="text" name="width" id="width__td"  placeholder="Width of TD:" [(ngModel)]="tableStyle.widthTD">                            
+                </label>
+                <label for="height__td" class="tinput">Hight of TD:
+                    <input type="text" name="height" id="height__td"  placeholder="Height of TD:" [(ngModel)]="tableStyle.heightTD">                            
+                </label>
+            </form> 
+            <form name="form_table_border" class="form-table-border">  
+                <div  class="form-group">
+                <label for="width__bd" class="border__input">Width of border:
+                    <input type="text" name="width__bd" id="width__bd"  placeholder="Width:" [(ngModel)]="tableStyle.widthBorder">                            
+                </label>
+                <label for="type__bd" class="border__input">Type of border:</label>
+                    <select name="type__bd" id="type__bd" [(ngModel)]="tableStyle.typeBorder">  
+                        <option value="solid" selected>solid</option>
+                        <option value="dashed">dashed</option>
+                        <option value="dotted">dotted</option>
+                        <option value="double">double</option>
+                        <option value="groove">groove</option>
+                        <option value="ridge">ridge</option>
+                        <option value="inset">inset</option>
+                        <option value="outset">outset</option>
+                        <option value="none">none</option>                                
+                    </select>    
+                <label for="color__bd" class="border__input">Color of border:</label>
+                    <select name="color__bd" id="color__bd" [(ngModel)]="tableStyle.colorBorder">  
+                        <option value="black" selected>black</option>
+                        <option value="blue">blue</option>
+                        <option value="green">green</option>
+                        <option value="yellow">yellow</option>
+                        <option value="red">red</option>
+                        <option value="gray">gray</option>
+                        <option value="pink">pink</option>
+                        <option value="white">white</option>
+                        <option value="purple">purple</option>                                
+                    </select> 
+                </div>     
+                <input type="button" class="btn-create-table" value="Create table" (click)="createTable()">                          
+            </form>           
+        </div>
+        <div class="create-list" *ngIf="isList">
+            <form name="form-list" class="form-list">
+                <label for="col" class="tinput">Column Li:
+                    <input type="text" name="count" id="col" placeholder="Column Li:" [(ngModel)]="listStyle.colLi">
+                </label>
+                <label for="marks" class="tinput">Type of marks:
+                <select name="type" id="marks" [(ngModel)]="listStyle.typeMarks">
+                    <option value="circle">circle</option>
+                    <option value="disc">disc</option>
+                    <option value="square">square</option>
+                </select>
+                </label>
+                <input type="button" value="Create list" name="create" class="btn-create-list" (click)="createList()">
+            </form>
+        </div>
+    </div>   
+</div>
+

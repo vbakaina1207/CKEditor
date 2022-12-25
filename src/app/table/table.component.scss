@@ -1,0 +1,98 @@
+@import "../shared/styles/variables";
+@import "../shared//styles/mixins";
+
+.block-2{
+    min-height: 230px;
+    width: 70%;
+    border-radius: 5px;
+    background-color:  $primary-color;
+    padding: 20px 50px;
+    position: relative;
+    margin: 20px auto;
+}
+
+.radio-choose{
+    margin-bottom: 20px;
+}
+
+h3{
+    padding-bottom: 20px;
+}
+
+.form-table,
+.form-table-style,
+.form-list{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group{
+    display: flex;
+    justify-content: space-between;
+}
+.tinput input,
+#marks{
+    width: 500px;
+    height: 30px;
+    border: none;
+    margin-bottom: 15px;
+    padding-left: 5px;
+}
+
+#marks{
+    margin-left: 11px;
+}
+
+.tinput{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.border__input input{
+    width: 100px;
+    height: 30px;
+    margin-left: 18px;
+}
+
+.border__input ~ select{
+    height: 30px;
+    width: 77px;
+    margin-left: 10px;
+}
+
+.border__input input,
+.border__input ~ select{
+    border: none;
+    margin-right: 9px;
+}
+
+#color__bd{
+    margin-right: 0;
+}
+.btn-create-table,
+.btn-create-list{
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: darkgreen;
+    color: white;
+    margin-top: 20px;
+}
+
+.btn-create-list{
+    margin-top: 0;
+}
+
+.radio{
+    @include radio;
+}
+
+input,
+select{
+    border-radius: 5px;
+    &:focus{
+        @include focus;
+    }
+}
