@@ -8,4 +8,12 @@
 .block-result{
     overflow: auto;  
     height: 250px;
+    background-color: $bg-color;
+    padding: 10px;;
 }
+
+
+body{
+    background-color: $bg-color;
+}
+

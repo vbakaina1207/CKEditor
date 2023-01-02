@@ -1,47 +1,64 @@
-<div class="container" *ngIf="!isTable">
-
+<div class="container">
 
 <app-result [codeEditor]="codeEditor" (changeValue)="valueChange($event)"></app-result>  
 
-<div class="block-managment text-center">
-    <input type="button" value="edit" class="btn btn-warning btn-edit" (click)="editClick()">
-    <input type="button" value="style" class="btn btn-primary btn-style ms-2" (click)="styleClick()">
+<div class="block-managment">
+    <input type="button" value="Редагувати" class="button btn-edit" (click)="editClick()">
+    <input type="button" value="Стилізувати" class="button btn-style" (click)="styleClick()">
+    <input type="button" value="Блокувати" class="button" (click)="blockClick()">
 </div>
-<form #form="ngForm">
-    <div class="block block-edit" *ngIf="!isStyle">
+<form #form="ngForm" class="block block-edit" *ngIf="!isStyle && !isTable">
+        <div class="btn-groups" (click)="cssCreate($event)">
+            <button class="btn-html">p</button>
+            <button class="btn-html">h1</button>
+            <button class="btn-html">h2</button>
+            <button class="btn-html">h3</button>
+            <button class="btn-html">h4</button>
+            <button class="btn-html">h5</button>
+            <button class="btn-html">h6</button>
+            <button class="btn-html">a</button>            
+        </div>
         <textarea name="code" id="code"  [(ngModel)]="result" ></textarea>
-        <input type="button" value="add" class="btn btn-add btn-danger" (click)="addClick()">
-        <input type="button" value="save" class="btn btn-save btn-success ms-2" (click)="saveClick()" [disabled]="!result">
-    </div>  
+        <input type="button" value="Додати" class="button btn-add" (click)="addClick()">
+        <input type="button" value="Зберегти" class="button btn-save" (click)="saveClick()" [disabled]="!result">
+</form>    
 
 
 
-    <div class="block style-block" *ngIf="isStyle" (click)="clickOut($event)">   
-        <div class="form-size">
-            <h3>Text size:</h3>        
+    <form #form="ngForm" class="block style-block" *ngIf="isStyle && !isTable">           
+        <fieldset class="form-size">
+            <legend class="legend">Розмір шрифту</legend>                  
             <label class="radio">
                 <input type="radio" name="size" value="12px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
                 12px
             </label>
-            <label class="radio ms-3">
+            <label class="radio">
                 <input type="radio" name="size" value="14px" class="fontsize" checked [(ngModel)]="textStyle.size"><span></span>
                 14px
             </label>
-            <label class="radio ms-3">
+            <label class="radio">
                 <input type="radio" name="size" value="16px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
                 16px
             </label>                                
-            <label class="radio ms-3">
+            <label class="radio">
                 <input type="radio" name="size" value="18px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
                 18px
             </label>                                
-            <label class="radio ms-3">
+            <label class="radio">
                 <input type="radio" name="size" value="20px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
                 20px
-            </label>                                        
-        </div>
-        <div class=" mt-2">
-            <h3>Font family:</h3>
+            </label>  
+            <label class="radio">
+                <input type="radio" name="size" value="22px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
+                22px
+            </label>  
+            <label class="radio">
+                <input type="radio" name="size" value="24px" class="fontsize" [(ngModel)]="textStyle.size"><span></span>
+                24px
+            </label>  
+        </fieldset>                                              
+        <fieldset class="form-size">
+            <legend>Шрифт</legend>
             <select class="custom-select mt-2 mb-2" id="fontFamily" name="family" [(ngModel)]="textStyle.family">
                 <option value="" style="display:none; color:gray">Choose option</option>
                 <option value="cursive">cursive</option>
@@ -52,39 +69,45 @@
                 <option value="Arial Narrow">Arial Narrow</option>
                 <option value="Arial">Arial</option>
             </select>
-        </div>
-        <div class="form-color mt-2">
-            <h3>Colors:</h3>
-            <input type="button" #bgText value="Color of text"  class="btn btn-secondary mt-2 mb-2" (click)="colorText()">
-            <input type="button" #bgColor value="Background color"  class="btn btn-secondary ms-3  mt-2 mb-2" (click)="colorBg()">
-            <div class="colors" #colors (click)="colorClick($event)" *ngIf="(isColorText || isColorBg)">
-                <div class="color-box red" value="red"></div>
-                <div class="color-box blue" value="blue"></div>
-                <div class="color-box green" value="green"></div>
-                <div class="color-box white" value ="white"></div>
-                <div class="color-box black" value ="black"></div>
-                <div class="color-box yellow" value ="yellow"></div>
-                <div class="color-box pink" value ="pink"></div>
-                <div class="color-box purple" value ="purple"></div>
-                <div class="color-box gray" value ="gray"></div>           
-            </div>
-        </div>
-        <div class="form-style mt-3">
-            <h3>Font weight:</h3>
-        
+        </fieldset>        
+        <fieldset class="form-color form-size">
+            <legend>Колір</legend>
+            <div class="label">
+                <label  for="text">Text</label>
+                    <input type="color" name="text" class="color-picker" [value]="textStyle.textColor" [(ngModel)]="textStyle.textColor">                
+                <label  for="background">Background</label>
+                    <input type="color" name="background" class="color-picker" [value]="textStyle.bgColor" [(ngModel)]="textStyle.bgColor">            
+            </div>            
+        </fieldset>
+        <fieldset class="form-style form-size">
+            <legend>Стиль шрифту</legend>
             <label for="bold" class="font-style">
-                <input type="checkbox" id="bold" name="bold" value="bold" [(ngModel)]="textStyle.bold"><span>Bold text</span>
+                <input type="checkbox" id="bold" name="bold" value="bold" [(ngModel)]="textStyle.bold"><span>Жирний</span>
             </label>
-            <label for="curcive" class="font-style ms-2">
-                <input type="checkbox" id="curcive" name="cursive" value="curcive" [(ngModel)]="textStyle.italic"><span>Italic text</span>
+            <label for="curcive" class="font-style">
+                <input type="checkbox" id="curcive" name="cursive" value="curcive" [(ngModel)]="textStyle.italic"><span>Курсив</span>
             </label>    
-    </div>  
-</div>  
-</form>
+            <label for="underline" class="font-style">
+                <input type="checkbox" id="underline" name="underline" value="underline" [(ngModel)]="textStyle.underline"><span>Підкреслений</span>
+            </label>
+    </fieldset>  
+</form>  
+<div class="modal-wrapper" *ngIf="isBlock">
+    <form #form="ngForm" class="modal-container">
+        <div class="modal-text">Програму заблоковано. Введіть пароль</div>        
+            <input type="text" #password name="modal-txt" id="midal-txt" class="input-modal" ngModel (ngModelChange)="onChangePassword(password.value)">
+            <div class="field-error" *ngIf="isError">Пароль не вірний</div>    
+        <button type="submit" class="button" (click)="unblockClick(password.value)">Разблокувати</button>        
+    </form>
+
 </div>
-<div class="container" *ngIf="isTable">
-    <app-table [isTable]="isTable" (changeValue)="valueTableChange($event)"></app-table>  
+
+
+    <div class="block" *ngIf="isTable">
+        <app-table [isTable]="isTable" (changeValue)="valueTableChange($event)"></app-table>  
+    </div>
 </div>
+
 
 
 

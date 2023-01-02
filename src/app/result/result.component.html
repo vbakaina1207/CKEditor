@@ -1,4 +1,6 @@
-<div class="block block-result" [ngStyle]="{'color': textStyle.textColor, 'background-color': textStyle.bgColor, 'font-size': textStyle.size, 'font-weight': textStyle.bold ? 'bold' : '400', 'font-style': textStyle.italic ? 'italic' : 'normal', 'font-family': textStyle.family}"
+<div class="block">
+<div class="block-result" [ngStyle]="{'color': textStyle.textColor, 'background-color': textStyle.bgColor, 'font-size': textStyle.size, 'font-weight': textStyle.bold ? 'bold' : '400', 'font-style': textStyle.italic ? 'italic' : 'normal', 'font-family': textStyle.family, 'text-decoration':textStyle.underline ? 'underline' : 'none'}"
 [innerHtml]="codeEditor | safeHtml">
 
-</div>    
+</div> 
+</div>   

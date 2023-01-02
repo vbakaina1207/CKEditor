@@ -3,24 +3,36 @@
 
 .block-2{
     min-height: 230px;
-    width: 70%;
+    width: 100%;
     border-radius: 5px;
+    border-top-left-radius: 0;
     background-color:  $primary-color;
     padding: 20px 50px;
     position: relative;
-    margin: 20px auto;
+    margin: 0 auto;
+    z-index: 2;
+    border: 2px solid rgb(119, 116, 116);
+    margin-left: -1px;
 }
 
 .radio-choose{
-    margin-bottom: 20px;
+    margin: -1px;
+    position: relative;
+    z-index: 10000;
+    background-color: $primary-color;
+    display: inline-block;
 }
 
 h3{
     padding-bottom: 20px;
 }
 
+h2{
+    text-align: center;;
+}
+
 .form-table,
-.form-table-style,
+// .form-table-style,
 .form-list{
     display: flex;
     flex-direction: column;
@@ -30,11 +42,11 @@ h3{
     display: flex;
     justify-content: space-between;
 }
-.tinput input,
+input[type="number"],
+select,
 #marks{
-    width: 500px;
-    height: 30px;
-    border: none;
+    width: 150px;
+    height: 30px;    
     margin-bottom: 15px;
     padding-left: 5px;
 }
@@ -43,56 +55,203 @@ h3{
     margin-left: 11px;
 }
 
-.tinput{
-    display: flex;
-    justify-content: space-between;
-}
-
-
-.border__input input{
-    width: 100px;
-    height: 30px;
-    margin-left: 18px;
-}
-
-.border__input ~ select{
-    height: 30px;
-    width: 77px;
-    margin-left: 10px;
-}
-
-.border__input input,
-.border__input ~ select{
-    border: none;
-    margin-right: 9px;
-}
-
 #color__bd{
     margin-right: 0;
 }
-.btn-create-table,
-.btn-create-list{
-    width: 100px;
-    height: 30px;
-    border: none;
-    border-radius: 5px;
-    background-color: darkgreen;
-    color: white;
-    margin-top: 20px;
+
+.choose{
+    display: none;
 }
 
-.btn-create-list{
-    margin-top: 0;
+.radio {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(128, 127, 127);
+    border: 1px solid transparent;
+    border-bottom: none;
+
+    &:before {
+        font-family: fontawesome;
+        font-weight: normal;
+        margin-right: 10px;
+        color: #fff;
+    }
+    &:hover {
+        color: #888;
+        cursor: pointer;
+    }
+    
 }
 
-.radio{
-    @include radio;
+
+.choose + label {
+    border: 1px solid rgb(119, 116, 116);
+}
+.choose:checked + label {
+    color: #fff;
+    border: 1px solid rgb(119, 116, 116);
+    border-top: 3px solid white;
+    border-bottom: none;
+    
 }
 
 input,
 select{
     border-radius: 5px;
+    margin-left: 5px;
     &:focus{
         @include focus;
     }
 }
+
+legend {
+    @include legend;
+}
+
+
+fieldset {
+    @include fieldset;
+} 
+
+.type-list{
+    @include radio;
+
+    &:not(first-child){
+        margin-left: 5px;
+    }
+}
+.radio-btn:not(first-child),
+.param-li:not(first-child){
+    margin-left: 15px;
+}
+
+.form-size{
+    @include form-size;
+    position: relative;
+}
+
+
+.button{
+    @include button;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+input[type="color"]{
+    height: 30px;
+    padding: 3px;
+    
+}
+
+.field-error{
+    border: 1px solid red;    
+}
+.text-error,
+.text-error2,
+.text-error3,
+.text-error4,
+.text-error5,
+.text-error6,
+.text-error7{
+    color: red;;
+    position: absolute;
+}
+.text-error{
+    top: 30px;
+    left: 38%;
+}
+
+.text-error2{
+    top: 30px;
+    right: 26%;
+}
+
+.text-error3{
+    top: 33px;
+    left: 32%;
+}
+
+.text-error4{
+    top: 33px;
+    right: 30%;
+}
+
+.text-error5{
+    top: 30px;
+    left: 36%;
+}
+
+.text-error6{
+    top: 30px;
+    right: 20%;
+}
+.text-error7{
+    top: 33px;
+    right: 11%;
+}
+
+.btn-example{
+    width: 200px;
+}
+
+
+.block-group-example{
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.block-example{
+    background-color: $bg-color;
+}
+.dflex{
+    @include dflex;
+    justify-content: end;
+}
+
+.top-example{
+    height: 30px;   
+    background-color: $btn-color;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: auto;
+}
+.btn-round{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    border: 1px solid  red;
+
+    &:hover {
+        background-color: rgb(235, 37, 37);
+    }
+}
+
+    .block-show-example{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .btn-show-example{
+        display: block;
+        background-color: $primary-color;
+        border: none;
+        color: white;
+        margin-top: 20px;
+
+        &:hover{
+            color: red;
+        }
+    }
+    
+    
+
+
+
+

@@ -20,6 +20,7 @@ export class ResultComponent implements OnInit {
     family: '',
     bold: false,
     italic: false,
+    underline: false,
     textColor: '',
     bgColor: ''
   };

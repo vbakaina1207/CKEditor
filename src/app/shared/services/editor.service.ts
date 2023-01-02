@@ -14,8 +14,9 @@ export class EditorService {
     family: 'sans-serif',
     bold: false,
     italic: false,
-    textColor: 'black',
-    bgColor: 'lightgray'
+    underline: false,
+    textColor: 'white',
+    bgColor: '#858282'
 }
 
 public tableStyle: ITableStyle = {
@@ -24,13 +25,14 @@ public tableStyle: ITableStyle = {
   widthTD: '',
   heightTD: '',
   widthBorder: '',
-  typeBorder: 'solid',
+  typeBorder: '',
   colorBorder: 'black'
 }
 
 public listStyle: IListStyle = {
+  typeLi: '',
   colLi: '',
-  typeMarks: 'circle',
+  typeMarks: '',
 }
 
 public codeTable: string ='';

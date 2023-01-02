@@ -20,14 +20,18 @@ export class EditComponent implements OnInit {
   public isColorBg: boolean = false;
   public isStyle: boolean = false;
   public isClose: boolean = false;
+  public isError: boolean = false;
+  public isBlock: boolean = false;
   @Input() isTable: boolean = false;
   public color: string = 'black';
+  public password: string = 'admin';
   
   @Input() textStyle: ITextStyle = {
     size: '',    
     family: 'sans-serif',
     bold: false,
     italic: false,
+    underline: false,
     textColor: '',
     bgColor: ''
 }
@@ -59,11 +63,8 @@ export class EditComponent implements OnInit {
   }
 
   saveClick():void {
-    this.codeEditor = this.result ; 
-    this.result += this.codeTable;
+    this.codeEditor = this.result ;     
     this.changeValue.emit(this.result);  
-    this.result = '';
-    this.codeTable = '';
   }
 
   editClick(): void {
@@ -76,32 +77,6 @@ export class EditComponent implements OnInit {
     this.isStyle = true;
   }
 
-  colorClick(event:any): void{    
-    this.color = event.target.classList[1];    
-    if (this.isColorText) {
-      this.textStyle.textColor = this.color;
-      this.isColorText = false;
-    }
-    if (this.isColorBg) {
-      this.textStyle.bgColor = this.color;
-      this.isColorBg = false;
-    }    
-  }
-  colorText(): void{
-    this.isColorText = true;    
-  }
-  colorBg(): void{
-    this.isColorBg = true;  
-  }
-
-  @HostListener('document:click', ['$event'])
-  clickOut(event: Event): void{
-      if (event.target !== this.bgColor?.nativeElement && event.target !== this.bgText?.nativeElement && event.target!==this.colors?.nativeElement) {
-        this.isColorText = false;
-        this.isColorBg = false;
-    }    
-  }
-
   addClick(): void {
     this.isTable = true;
     this.changeValueTable.emit({isTable:this.isTable, codeTable: this.codeTable});  
@@ -109,5 +84,32 @@ export class EditComponent implements OnInit {
     this.changeValue.emit(this.result);  
   }
 
+  cssCreate(event: any):void {
+    console.log(event.target.textContent);
+    if (event.target.textContent=='a') {
+      this.result += `\n<${event.target.textContent}  href=""></${event.target.textContent}>`;
+    } else {
+      this.result += `\n<${event.target.textContent}></${event.target.textContent}>`;
+    }
+  }
+
+  blockClick():void {
+    this.isBlock = true;
+  }
+
+  unblockClick(password: string):void {
+    if (password == this.password) {
+      this.isBlock = false;
+    } else {
+      this.isError = true;
+    }
+  }
+
+  onChangePassword(password: string):void {
+    if (password=='' || password == this.password) this.isError = false;
+  }
+
+
 
 }
+
